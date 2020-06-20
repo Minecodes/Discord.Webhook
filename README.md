@@ -5,8 +5,7 @@ A webhook library
 
 🎓Example: 
 ```
-const webhook = require('Discord.Webhook');
-const hook = new webhook.login('webhook id', 'webhook token')
+const { hook } = require('Discord.Webhook');
 
-hook.message('I am alive!')
+hook('webhook id', 'webhook token', 'message')
 ```

@@ -1,5 +1,6 @@
-const webhook = require('./lib/main');
+const { hook } = require('./lib/main');
 const { program } = require('commander');
+const readline = require('readline');
 
 program
   .name('webhook')
@@ -9,6 +10,25 @@ program
   .option('-t, --token <token>', 'set webhook token')
 
 program.parse(process.argv);
-if (!)
+if (!program.id) {
+    console.error('please enter the webhook id')
+    process.exit()
+} else if (!program.token) {
+    console.error('please enter the webhook token')
+    process.exit()
+} else if (!program.msg) {
+    console.error('please enter a message')
+    process.exit()
+}
 
-const hook 
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+  rl.question('What do you think of Node.js? ', (answer) => {
+    // TODO: Log the answer in a database
+    hook(program.id, program.token, answer)
+  
+    rl.close();
+});
